@@ -1,70 +1,291 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa" dir="rtl" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>استودیو پوستر سینمایی هوش مصنوعی</title>
+    <title>CINEMATIC AI // استودیو وایرال پوستر</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: { 500: '#00f2fe', 600: '#4facfe', 900: '#0a0f1d' }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts & Lucide Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         body { font-family: 'Vazirmatn', sans-serif; }
+        .glass-panel { background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        @keyframes pulse-glow { 0%, 100% { box-shadow: 0 0 20px rgba(0, 242, 254, 0.3); } 50% { box-shadow: 0 0 40px rgba(79, 172, 254, 0.6); } }
+        .neon-glow { animation: pulse-glow 3s infinite; }
+        .scanline { background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.3)); background-size: 100% 4px; }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between">
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between selection:bg-cyan-500 selection:text-black">
 
-    <!-- هدر سایت -->
-    <header class="py-6 px-8 border-b border-slate-800/80 flex justify-between items-center bg-slate-900/50 backdrop-blur-md">
-        <h1 class="text-xl font-extrabold tracking-wider bg-gradient-to-r from-amber-400 to-rose-500 bg-clip-text text-transparent">
-            🎬 استودیو پوستر سینمایی
-        </h1>
-        <span class="text-xs bg-amber-500/10 text-amber-400 border border-amber-500/20 px-3 py-1 rounded-full font-semibold">نسخه وایرال v1.0</span>
+    <!-- هدر حرفه‌ای -->
+    <header class="py-5 px-6 border-b border-slate-800/60 glass-panel sticky top-0 z-50 flex justify-between items-center">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center font-black text-slate-950 shadow-lg shadow-cyan-500/30">
+                AI
+            </div>
+            <div>
+                <h1 class="font-black text-lg tracking-wider bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-400 bg-clip-text text-transparent">
+                    NEURAL POSTER LAB
+                </h1>
+                <p class="text-[10px] text-slate-400 tracking-widest uppercase">نسخه صنعتی وایرال v2.4</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2 bg-cyan-500/10 border border-cyan-500/20 px-3 py-1.5 rounded-full text-cyan-400 text-xs font-semibold">
+            <i data-lucide="zap" class="w-3.5 h-3.5 animate-bounce"></i>
+            <span>موتور عصبی فعال</span>
+        </div>
     </header>
 
     <!-- محتوای اصلی -->
-    <main class="max-w-2xl w-full mx-auto px-4 py-8 flex-grow flex flex-col items-center">
-        <div class="text-center mb-8">
-            <h2 class="text-3xl font-extrabold mb-3 tracking-tight">قهرمان فیلم بعدی خودت باش!</h2>
-            <p class="text-slate-400 text-sm">عکست رو آپلود کن، سبک فیلم رو انتخاب کن و پوستر خنده‌دار یا حماسی خودت رو بگیر.</p>
+    <main class="max-w-4xl w-full mx-auto px-4 py-10 flex-grow grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+        
+        <!-- پنل کنترل و آپلود -->
+        <div class="md:col-span-6 space-y-6">
+            <div class="glass-panel p-6 rounded-3xl shadow-2xl relative overflow-hidden">
+                <div class="absolute -top-24 -right-24 w-48 h-48 bg-cyan-500/15 rounded-full blur-3xl pointer-events-none"></div>
+                
+                <h2 class="text-xl font-extrabold mb-1 tracking-tight flex items-center gap-2">
+                    <i data-lucide="cpu" class="w-5 h-5 text-cyan-400"></i>
+                    تنظیمات استودیوی عصبی
+                </h2>
+                <p class="text-xs text-slate-400 mb-6">پرتره خود را وارد کنید تا هوش مصنوعی آن را به پوستر باکس‌آفیس تبدیل کند.</p>
+
+                <!-- آپلود فایل با طراحی مدرن -->
+                <div class="mb-6">
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2">۱. آپلود تصویر پرتره</label>
+                    <label for="uploadImage" class="border-2 border-dashed border-slate-800 hover:border-cyan-500/50 bg-slate-900/40 rounded-2xl p-6 flex flex-col items-center justify-center cursor-pointer transition group">
+                        <div class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center text-cyan-400 group-hover:scale-110 transition mb-2">
+                            <i data-lucide="upload-cloud" class="w-6 h-6"></i>
+                        </div>
+                        <span id="fileNameDisplay" class="text-sm font-semibold text-slate-300">کلیک کنید یا عکس را بکشید</span>
+                        <span class="text-[11px] text-slate-500 mt-1">PNG, JPG (کیفیت بالا توصیه می‌شود)</span>
+                        <input type="file" id="uploadImage" accept="image/*" class="hidden">
+                    </label>
+                </div>
+
+                <!-- انتخاب استایل سینمایی -->
+                <div class="mb-6">
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2">۲. انتخاب جهان سینمایی</label>
+                    <div class="grid grid-cols-2 gap-3">
+                        <button type="button" class="genre-btn border border-cyan-500/50 bg-cyan-500/10 text-cyan-300 font-bold py-3 px-4 rounded-xl text-xs transition flex items-center justify-center gap-2" data-genre="cyberpunk">
+                            <i data-lucide="glasses" class="w-4 h-4"></i> سایبرپانک ۲۰۷۷
+                        </button>
+                        <button type="button" class="genre-btn border border-slate-800 bg-slate-900/50 text-slate-400 font-bold py-3 px-4 rounded-xl text-xs transition flex items-center justify-center gap-2" data-genre="scifi">
+                            <i data-lucide="rocket" class="w-4 h-4"></i> میان‌ستاره‌ای
+                        </button>
+                    </div>
+                </div>
+
+                <!-- دکمه پردازش -->
+                <button id="generateBtn" class="w-full bg-gradient-to-r from-cyan-500 via-sky-500 to-indigo-600 text-slate-950 font-black py-4 px-6 rounded-2xl shadow-xl shadow-cyan-500/20 hover:opacity-95 transition transform active:scale-[0.99] flex items-center justify-center gap-2 text-sm">
+                    <i data-lucide="sparkles" class="w-5 h-5"></i>
+                    شروع رندرینگ عصبی (AI)
+                </button>
+            </div>
         </div>
 
-        <div class="w-full bg-slate-900/80 border border-slate-800 rounded-2xl p-6 shadow-2xl backdrop-blur-sm">
-            <!-- آپلود عکس -->
-            <div class="mb-6">
-                <label class="block text-sm font-semibold mb-2 text-slate-300">۱. انتخاب عکس چهره</label>
-                <input type="file" id="uploadImage" accept="image/*" class="w-full text-sm text-slate-400 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-amber-500 file:text-slate-950 hover:file:bg-amber-400 cursor-pointer transition">
-            </div>
+        <!-- پنل خروجی و پیش‌نمایش پوستر -->
+        <div class="md:col-span-6 flex flex-col items-center">
+            <div class="w-full glass-panel p-6 rounded-3xl shadow-2xl flex flex-col items-center relative">
+                
+                <!-- لودینگ شبیه‌ساز هوش مصنوعی -->
+                <div id="loadingOverlay" class="absolute inset-0 bg-slate-950/90 backdrop-blur-md rounded-3xl z-20 flex flex-col items-center justify-center hidden">
+                    <div class="w-16 h-16 border-4 border-cyan-500/20 border-t-cyan-500 rounded-full animate-spin mb-4"></div>
+                    <p id="loadingStatus" class="text-xs font-mono text-cyan-400 animate-pulse">در حال تجزیه لندمارک‌های چهره...</p>
+                </div>
 
-            <!-- انتخاب سبک پوستر -->
-            <div class="mb-6">
-                <label class="block text-sm font-semibold mb-2 text-slate-300">۲. انتخاب ژانر فیلم</label>
-                <div class="grid grid-cols-2 gap-3">
-                    <button type="button" class="genre-btn border border-amber-500/50 bg-amber-500/10 text-amber-400 font-semibold py-3 px-4 rounded-xl text-sm transition text-center" data-genre="sci-fi">صاعقه در سال ۲۰۵۰ 🚀</button>
-                    <button type="button" class="genre-btn border border-slate-800 bg-slate-800/50 text-slate-300 font-semibold py-3 px-4 rounded-xl text-sm transition text-center" data-genre="comedy">آخرین مجرد شهر 😂</button>
+                <div class="w-full flex justify-between items-center mb-4">
+                    <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">پیش‌نمایش خروجی زنده</span>
+                    <span class="text-[10px] bg-slate-800 px-2.5 py-1 rounded-md text-slate-300 font-mono">1080x1350 px</span>
+                </div>
+
+                <!-- بوم پوستر -->
+                <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-800/80 w-full max-w-[320px] aspect-[4/5] bg-black scanline">
+                    <canvas id="posterCanvas" class="w-full h-full object-cover"></canvas>
+                </div>
+
+                <!-- دکمه‌های اشتراک‌گذاری و دانلود -->
+                <div id="actionButtons" class="w-full mt-6 space-y-3 hidden">
+                    <a id="downloadBtn" download="neural-poster.png" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold py-3.5 px-6 rounded-2xl transition shadow-lg shadow-emerald-500/20 flex items-center justify-center gap-2 text-sm">
+                        <i data-lucide="download" class="w-4 h-4"></i> دانلود فایل با کیفیت فوق‌العاده
+                    </a>
+                    <button id="shareCaptionBtn" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold py-3 px-6 rounded-2xl transition flex items-center justify-center gap-2 text-xs">
+                        <i data-lucide="copy" class="w-4 h-4 text-cyan-400"></i> کپی کپشن وایرال برای اینستاگرام
+                    </button>
                 </div>
             </div>
-
-            <!-- دکمه ساخت -->
-            <button id="generateBtn" class="w-full bg-gradient-to-r from-amber-500 to-rose-600 text-slate-950 font-ext500 font-extrabold py-3.5 px-6 rounded-xl shadow-lg hover:opacity-90 transition transform active:scale-[0.98]">
-                ساخت پوستر جادویی ✨
-            </button>
-        </div>
-
-        <!-- پیش‌نمایش خروجی -->
-        <div id="resultContainer" class="hidden mt-8 w-full flex flex-col items-center">
-            <div class="relative border-4 border-slate-800 rounded-2xl overflow-hidden shadow-2xl bg-black max-w-sm w-full">
-                <canvas id="posterCanvas" class="w-full h-auto block"></canvas>
-            </div>
-            <a id="downloadBtn" download="cinematic-poster.png" class="mt-4 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-3 px-8 rounded-xl transition shadow-lg flex items-center gap-2">
-                📥 دانلود و اشتراک‌گذاری در استوری
-            </a>
         </div>
     </main>
 
     <!-- فوتر -->
-    <footer class="py-4 text-center text-xs text-slate-500 border-t border-slate-900">
-        ساخته شده برای وایرال شدن سریع در شبکه‌های اجتماعی
+    <footer class="py-6 text-center text-xs text-slate-500 border-t border-slate-900 glass-panel">
+        طراحی شده با معماری مدرن و استقرار خودکار روی GitHub Actions
     </footer>
 
-    <script src="script.js"></script>
+    <!-- اسکریپت آیکون‌ها -->
+    <script>
+        lucide.createIcons();
+    </script>
+
+    <!-- اسکریپت حرفه‌ای پردازش بوم و وایرال -->
+    <script>
+        let selectedGenre = 'cyberpunk';
+        let uploadedImageObj = null;
+
+        document.getElementById('uploadImage').addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                document.getElementById('fileNameDisplay').textContent = file.name;
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        uploadedImageObj = img;
+                        renderPreview(img, selectedGenre);
+                    };
+                    img.src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        document.querySelectorAll('.genre-btn').forEach(button => {
+            button.addEventListener('click', (e) => {
+                document.querySelectorAll('.genre-btn').forEach(btn => {
+                    btn.classList.remove('border-cyan-500', 'bg-cyan-500/10', 'text-cyan-300');
+                    btn.classList.add('border-slate-800', 'bg-slate-900/50', 'text-slate-400');
+                });
+                const target = e.currentTarget;
+                target.classList.remove('border-slate-800', 'bg-slate-900/50', 'text-slate-400');
+                target.classList.add('border-cyan-500', 'bg-cyan-500/10', 'text-cyan-300');
+                selectedGenre = target.getAttribute('data-genre');
+                if (uploadedImageObj) renderPreview(uploadedImageObj, selectedGenre);
+            });
+        });
+
+        document.getElementById('generateBtn').addEventListener('click', () => {
+            if (!uploadedImageObj) {
+                alert('لطفاً ابتدا تصویر پرتره خود را بارگذاری کنید.');
+                return;
+            }
+
+            const loading = document.getElementById('loadingOverlay');
+            const status = document.getElementById('loadingStatus');
+            loading.classList.remove('hidden');
+
+            const steps = [
+                "در حال تجزیه لندمارک‌های چهره...",
+                "تزریق شبکه عصبی سینمایی...",
+                "اعمال گرید رنگ سایبرپانک و فیلتر نوری...",
+                "بهینه‌سازی نهایی برای اشتراک‌گذاری در استوری..."
+            ];
+
+            let i = 0;
+            const interval = setInterval(() => {
+                if (i < steps.length) {
+                    status.textContent = steps[i];
+                    i++;
+                } else {
+                    clearInterval(interval);
+                    loading.classList.add('hidden');
+                    renderPreview(uploadedImageObj, selectedGenre, true);
+                    document.getElementById('actionButtons').classList.remove('hidden');
+                }
+            }, 600);
+        });
+
+        function renderPreview(img, genre, isFinal = false) {
+            const canvas = document.getElementById('posterCanvas');
+            const ctx = canvas.getContext('2d');
+
+            canvas.width = 1080;
+            canvas.height = 1350;
+
+            // پس‌زمینه گرادینت تاریک عمیق
+            const bgGrad = ctx.createLinearGradient(0, 0, 0, canvas.height);
+            if (genre === 'cyberpunk') {
+                bgGrad.addColorStop(0, '#0f172a');
+                bgGrad.addColorStop(0.5, '#090d16');
+                bgGrad.addColorStop(1, '#030712');
+            } else {
+                bgGrad.addColorStop(0, '#1e1b4b');
+                bgGrad.addColorStop(0.5, '#0f172a');
+                bgGrad.addColorStop(1, '#020617');
+            }
+            ctx.fillStyle = bgGrad;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // رندر تصویر پرتره کاربر با برش دایره‌ای یا مستطیل مدرن
+            const imgSize = 720;
+            const imgX = (canvas.width - imgSize) / 2;
+            const imgY = 220;
+
+            ctx.save();
+            ctx.beginPath();
+            ctx.roundRect(imgX, imgY, imgSize, imgSize, [40]);
+            ctx.clip();
+            ctx.drawImage(img, imgX, imgY, imgSize, imgSize);
+            
+            // فیلتر رنگی هوش مصنوعی روی تصویر
+            ctx.fillStyle = genre === 'cyberpunk' ? 'rgba(0, 242, 254, 0.15)' : 'rgba(99, 102, 241, 0.15)';
+            ctx.fillRect(imgX, imgY, imgSize, imgSize);
+            ctx.restore();
+
+            // فریم نئونی اطراف عکس
+            ctx.beginPath();
+            ctx.roundRect(imgX, imgY, imgSize, imgSize, [40]);
+            ctx.lineWidth = 8;
+            ctx.strokeStyle = genre === 'cyberpunk' ? '#00f2fe' : '#818cf8';
+            ctx.stroke();
+
+            // متن‌های سینمایی
+            ctx.textAlign = 'center';
+
+            ctx.fillStyle = '#64748b';
+            ctx.font = '800 32px "Vazirmatn", sans-serif';
+            ctx.fillText('NEURAL CINEMA PRESENTS', canvas.width / 2, 120);
+
+            const title = genre === 'cyberpunk' ? 'آخرین هکر متاورس' : 'مسافر افق‌های دور';
+            const subtitle = genre === 'cyberpunk' ? 'ماموریت غیرممکن برای بازپس‌گیری داده‌ها' : 'تنها در لبه‌ی جهان ناشناخته';
+
+            ctx.fillStyle = '#ffffff';
+            ctx.font = '900 64px "Vazirmatn", sans-serif';
+            ctx.fillText(title, canvas.width / 2, 1040);
+
+            ctx.fillStyle = genre === 'cyberpunk' ? '#00f2fe' : '#38bdf8';
+            ctx.font = '800 38px "Vazirmatn", sans-serif';
+            ctx.fillText(subtitle, canvas.width / 2, 1120);
+
+            // فوتر پوستر
+            ctx.fillStyle = '#475569';
+            ctx.font = '400 26px "Vazirmatn", sans-serif';
+            ctx.fillText('ساخته شده با هوش مصنوعی اختصاصی // Neural Lab', canvas.width / 2, 1280);
+
+            if (isFinal) {
+                document.getElementById('downloadBtn').href = canvas.toDataURL('image/png');
+            }
+        }
+
+        // کپی کپشن وایرال
+        document.getElementById('shareCaptionBtn').addEventListener('click', () => {
+            const caption = "من توی این استودیو هوش مصنوعی خودم رو تبدیل به قهرمان فیلم کردم! 🔥 تو هم از لینک زیر عکست رو بساز:\n#هوش_مصنوعی #سایبرپانک #پوستر_سینمایی";
+            navigator.clipboard.writeText(caption);
+            alert('کپشن وایرال با هشتگ‌ها کپی شد! در استوری یا پست خود استفاده کنید.');
+        });
+    </script>
 </body>
 </html>
