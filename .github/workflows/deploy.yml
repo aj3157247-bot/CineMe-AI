@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Deploy Next-Gen App to GitHub Pages
 
 on:
   push:
@@ -20,12 +20,16 @@ jobs:
       url: ${{ steps.deployment.outputs.url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Setup Pages
+      
+      - name: Setup GitHub Pages
         uses: actions/configure-pages@v4
+        
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         path: '.'
+        
       - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
